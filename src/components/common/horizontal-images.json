@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_common_horizontal_images",
+  "info": {
+    "displayName": "horizontalImages",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "leftImages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.image-properties"
+    }
+  }
+}
