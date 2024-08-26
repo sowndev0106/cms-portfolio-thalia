@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_elements_divide_images",
+  "info": {
+    "displayName": "divide Image",
+    "icon": "server",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "leftImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "rightImages": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "borderImageColor": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "allowViewImage": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

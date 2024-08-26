@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_elements_grid_images",
+  "info": {
+    "displayName": "Grid Image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "columnNumberOnMobile": {
+      "type": "integer"
+    },
+    "columnNumberOnDesktop": {
+      "type": "integer"
+    },
+    "allowViewImage": {
+      "type": "boolean"
+    },
+    "borderImageColor": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

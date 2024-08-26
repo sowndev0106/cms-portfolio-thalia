@@ -367,17 +367,23 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
   info: {
     singularName: 'homepage';
     pluralName: 'homepages';
-    displayName: 'homepage';
+    displayName: 'Homepage';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    backgroundIntroductionBanner: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
+    backgroundBanner: Attribute.Media<'images'>;
+    backgroundImage: Attribute.Media<'images'>;
+    sections: Attribute.DynamicZone<
+      [
+        'section.text-info-section',
+        'section.swiper-card-section',
+        'section.gird-image-section',
+        'section.divide-image-section'
+      ]
     >;
-    girdImages: Attribute.Component<'section-homepage.gird-images', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

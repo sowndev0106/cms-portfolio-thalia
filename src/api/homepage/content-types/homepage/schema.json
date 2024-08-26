@@ -4,7 +4,7 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "homepage",
+    "displayName": "Homepage",
     "description": ""
   },
   "options": {
@@ -12,22 +12,30 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "backgroundIntroductionBanner": {
+    "backgroundBanner": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
-    "girdImages": {
-      "displayName": "gird-images",
-      "type": "component",
-      "repeatable": true,
-      "component": "section-homepage.gird-images"
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "section.text-info-section",
+        "section.swiper-card-section",
+        "section.gird-image-section",
+        "section.divide-image-section"
+      ]
     }
   }
 }

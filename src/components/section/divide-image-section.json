@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_section_divide_image_sections",
+  "info": {
+    "displayName": "Divide Image Section",
+    "icon": "picture",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "colorSubtitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "colorTitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "white"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "contactButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button"
+    },
+    "tagElement": {
+      "type": "string"
+    },
+    "divideImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.divide-images"
+    }
+  }
+}

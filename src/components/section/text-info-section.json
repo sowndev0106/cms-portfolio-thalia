@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_section_text_info_sections",
+  "info": {
+    "displayName": "Text Info Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "flexImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.flex-images"
+    },
+    "tagElement": {
+      "type": "string"
+    },
+    "contactButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button"
+    },
+    "colorTitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "colorSubTitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_section_swiper_card_sections",
+  "info": {
+    "displayName": "Swiper Card Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "colorSubtitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "colorTitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "white"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.card"
+    },
+    "tagElement": {
+      "type": "string"
+    },
+    "contactButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button"
+    }
+  }
+}

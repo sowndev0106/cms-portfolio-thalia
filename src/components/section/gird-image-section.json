@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_section_gird_image_sections",
+  "info": {
+    "displayName": "Gird Image section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "colorSubtitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "colortTitle": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "white"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.grid-image"
+    },
+    "tagElement": {
+      "type": "string"
+    },
+    "contactButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button"
+    }
+  }
+}

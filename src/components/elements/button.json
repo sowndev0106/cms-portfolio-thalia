@@ -1,0 +1,71 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "displayName": "button",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "tooltip": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "borderRadius": {
+      "type": "enumeration",
+      "enum": [
+        "rounded-none",
+        "rounded-sm",
+        "rounded-md",
+        "rounded-lg",
+        "rounded-xl",
+        "rounded-3xl",
+        "rounded-ful"
+      ],
+      "default": "rounded-ful"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "yellow-green"
+    },
+    "title": {
+      "type": "string"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "non",
+        "_blank",
+        "_self",
+        "_parent",
+        "_top"
+      ],
+      "default": "_blank"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "yellow-green",
+        "purple",
+        "black",
+        "white"
+      ],
+      "default": "black"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}
