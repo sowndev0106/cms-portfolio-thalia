@@ -1,35 +1,21 @@
-ipeline {
-
+pipeline {
     agent any
 
-    parameters {
-        choice(name: 'ACTION', choices: ['Build', 'Remove all'], description: 'Pick something')
-    }
     stages {
-        stage('Building/Deploying') {
-            when{
-                environment name: 'ACTION', value: 'Build'
-            }
+        stage('Build') {
             steps {
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker compose up -d --build'
-                    sh 'docker compose push'
-                }
+                echo 'Building..'
             }
         }
-        stage('Removing all') {
-            when{
-                environment name: 'ACTION', value: 'Remove all'
-            }
+        stage('Test') {
             steps {
-                sh 'docker compose down -v '
+                echo 'Testing..'
             }
         }
-    }
-    post {
-        // Clean after build
-        always {
-            cleanWs()
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
         }
     }
 }
