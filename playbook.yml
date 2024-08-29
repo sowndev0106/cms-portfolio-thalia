@@ -32,9 +32,8 @@
         dest: /home/ubuntu/cms-portfolio-thalia
 
     - name: Run application
-      command: docker-compose up -d
-      args:
-        chdir: /home/ubuntu/cms-portfolio-thalia
+      command: cd /home/ubuntu/cms-portfolio-thalia && docker-compose up -d
+      
 
     - name: Prune everything
       community.docker.docker_prune:
