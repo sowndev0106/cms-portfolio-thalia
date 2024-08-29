@@ -1,5 +1,5 @@
 pipeline {
-    agent  docker { image 'node:20.17.0-alpine3.20' }
+    agent any
     environment {
         ENV = 'DEV'
         DB_URL = 'localhost'
@@ -15,7 +15,6 @@ pipeline {
                     sh 'docker compose build'
                     sh 'docker compose ps'
                     sh 'docker compose push'
-                  
                 }
             }
         }
