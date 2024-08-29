@@ -26,21 +26,14 @@
         state: latest
         update_cache: true
 
-    - name: Download Docker GPG key
-      get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /tmp/docker.gpg
-
-    - name: Add Docker GPG apt Key
-      apt_key:
-        file: /tmp/docker.gpg
-        state: present  
+    - name: Download and add Docker GPG key
+      command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
     - name: Add Docker Repository
       apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
         state: present
-
+        
     - name: Update apt and install docker-ce
       apt:
         name: docker-ce
