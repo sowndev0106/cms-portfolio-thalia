@@ -18,6 +18,7 @@
           - python3-pip
           - virtualenv
           - python3-setuptools
+          - sudo chmod a+r /usr/share/keyrings/docker-archive-keyring.gpg
         state: latest
         update_cache: true
     - name: Add Docker GPG apt Key
