@@ -11,7 +11,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'All ENV'
-                echo printenv
                 echo DOCKER_HUB_CREDENTIAL
                 echo DOCKER_HUB_CREDENTIAL_USR
                 echo DOCKER_HUB_CREDENTIAL_PSW
