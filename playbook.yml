@@ -1,13 +1,18 @@
-- name: ec2instance-playbook
-  hosts: host
-  become_user: root
-  become_method: sudo
+- hosts: all
+  become: true
+  vars:
+    container_count: 4
+    default_container_name: docker
+    default_container_image: ubuntu
+    default_container_command: sleep 1d
+
   tasks:
-    - name: update
+    - name: Install aptitude
       apt:
-        upgrade: yes
-        update_cache: yes
-        cache_valid_time: 86400
+        name: aptitude
+        state: latest
+        update_cache: true
+
     - name: Install required system packages
       apt:
         pkg:
@@ -40,6 +45,7 @@
     - name: Install Docker Module for Python
       pip:
         name: docker
+
     - name: Clone the git Repository
       git:
         repo: "{{git_repo}}"
