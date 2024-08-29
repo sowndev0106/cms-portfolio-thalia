@@ -5,12 +5,13 @@ pipeline {
         DB_URL = 'localhost'
         DB_PORT = '3306'
         DOCKER_HUB_CREDENTIAL = credentials('sowndev-dockerhub')
-
+        ENV_FILE =  credentials('env-develop')
     }
     stages {
         stage('Build and Push Docker Image') {
             steps {
                withDockerRegistry(credentialsId: 'sowndev-dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh 'cp $ENV_FILE .env'
                     sh "printenv"
                     sh 'docker compose build'
                     sh 'docker compose ps'
