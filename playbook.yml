@@ -46,9 +46,8 @@
         dest: /home/ubuntu/{{git_repo}}
 
     - name: cat env variables to file .env in source
-      copy:
-        content: {{env}}
-        dest: /home/ubuntu/{{git_repo}}/.env
+      command:  echo "{{env}}"  && echo "{{env}}" > /home/ubuntu/{{git_repo}}/.env 
+
     - name: Run docker compose into the directory
       command: docker-compose up -d
       args:
