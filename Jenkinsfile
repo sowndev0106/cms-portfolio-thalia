@@ -8,18 +8,18 @@ pipeline {
         ENV_FILE =  credentials('env-develop')
     }
     stages {
-        stage('Build and Push Docker Image') {
-            steps {
-               sh 'pwd'
-               withDockerRegistry(credentialsId: 'sowndev-dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'cp $ENV_FILE .env'
-                    sh "printenv"
-                    sh 'docker compose build'
-                    sh 'docker compose ps'
-                    sh 'docker compose push'
-                }
-            }
-        }
+        // stage('Build and Push Docker Image') {
+        //     steps {
+        //        sh 'pwd'
+        //        withDockerRegistry(credentialsId: 'sowndev-dockerhub', url: 'https://index.docker.io/v1/') {
+        //             sh 'cp $ENV_FILE .env'
+        //             sh "printenv"
+        //             sh 'docker compose build'
+        //             sh 'docker compose ps'
+        //             sh 'docker compose push'
+        //         }
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 withCredentials([file(credentialsId: 'ansible_key', variable: 'ansible_key')]) {
