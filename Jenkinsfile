@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Build and Push Docker Image') {
             steps {
+               sh 'pwd'
                withDockerRegistry(credentialsId: 'sowndev-dockerhub', url: 'https://index.docker.io/v1/') {
                     sh 'cp $ENV_FILE .env'
                     sh "printenv"
