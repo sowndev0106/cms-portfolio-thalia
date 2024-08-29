@@ -37,6 +37,7 @@ pipeline {
         // Clean after build
         always {
             // cleanWs()
+            echo 'Cleaning up workspace'
         }
     }
 }
