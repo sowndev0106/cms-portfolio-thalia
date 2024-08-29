@@ -3,7 +3,7 @@ services:
   strapi:
     container_name: strapi
     build: .
-    image: ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPO_NAME}:${DOCKER_HUB_REPO_TAG}
+    image: son162001/cms-thalia:latest
     restart: unless-stopped
     env_file: .env
     environment:
