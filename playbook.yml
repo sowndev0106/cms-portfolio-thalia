@@ -26,8 +26,15 @@
         state: latest
         update_cache: true
 
+    - name: Download Docker GPG key
+      get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /tmp/docker.gpg
+
     - name: Add Docker GPG apt Key
-      command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      apt_key:
+        file: /tmp/docker.gpg
+        state: present  
 
     - name: Add Docker Repository
       apt_repository:
