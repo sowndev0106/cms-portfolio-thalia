@@ -31,14 +31,11 @@
         repo: "https://github.com/sowndev0106/cms-portfolio-thalia.git"
         dest: /home/ubuntu/cms-portfolio-thalia
 
-    - name: cat env variables to file .env in source
-      command:  echo "{{env}}"  && echo "{{env}}" > /home/ubuntu/cms-portfolio-thalia/.env 
-
-    - name: Run docker compose into the directory
+    - name: Run application
       command: docker-compose up -d
       args:
         chdir: /home/ubuntu/cms-portfolio-thalia
-      
+
     - name: Prune everything
       community.docker.docker_prune:
         containers: true
