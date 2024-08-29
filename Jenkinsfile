@@ -28,7 +28,7 @@ pipeline {
                     sh 'cat ansible_key'
                     sh 'ansible --version'
                     sh 'ls -la'
-                    sh 'ansible-playbook -i hosts --private-key ansible_key playbook.yml'
+                    sh 'ansible-playbook -i hosts --private-key ansible_key playbook.yml -e git_repo=${GIT_REPO} -e git_branch=${GIT_BRANCH} -e env=${ENV_FILE}'
                 }
             }
         }

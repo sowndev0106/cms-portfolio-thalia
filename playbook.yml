@@ -20,22 +20,20 @@
           - python3-setuptools
         state: latest
         update_cache: true
+    - name: Clone the git Repository
+      git:
+        repo: {{git_git_repo}}
+        dest: /home/ubuntu/{{git_git_repo}}
 
-    - name: Add Docker Repository
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
-        state: present
-
-    - name: Update apt and install docker-ce
-      apt:
-        name: docker-ce
-        state: latest
-        update_cache: true
-
-    - name: Create a docker network
-      docker_network:
-        name: test
-
+    - name: cat env variables to file .env in source
+      copy:
+        content: {{env}}
+        dest: /home/ubuntu/{{git_git_repo}}/.env
+    - name: Run docker compose into the directory
+      command: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/{{git_git_repo}}
+      
     - name: Prune everything
       community.docker.docker_prune:
         containers: true
