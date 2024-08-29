@@ -20,7 +20,7 @@
           - python3-setuptools
         state: latest
         update_cache: true
-        
+
     - name: Add Docker GPG apt Key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
@@ -42,17 +42,17 @@
         name: docker
     - name: Clone the git Repository
       git:
-        repo: {{git_git_repo}}
-        dest: /home/ubuntu/{{git_git_repo}}
+        repo: {{git_repo}}
+        dest: /home/ubuntu/{{git_repo}}
 
     - name: cat env variables to file .env in source
       copy:
         content: {{env}}
-        dest: /home/ubuntu/{{git_git_repo}}/.env
+        dest: /home/ubuntu/{{git_repo}}/.env
     - name: Run docker compose into the directory
       command: docker-compose up -d
       args:
-        chdir: /home/ubuntu/{{git_git_repo}}
+        chdir: /home/ubuntu/{{git_repo}}
       
     - name: Prune everything
       community.docker.docker_prune:
