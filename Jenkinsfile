@@ -27,7 +27,6 @@ pipeline {
                     sh 'cat ansible_key'
                     sh 'ansible --version'
                     sh 'ls -la'
-                    sh 'chmod 400 ansible_key '
                     sh 'ansible-playbook -i hosts --private-key ansible_key playbook.yml'
                 }
             }
