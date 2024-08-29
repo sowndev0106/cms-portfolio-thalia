@@ -36,6 +36,10 @@
         state: latest
         update_cache: true
 
+    - name: Create a docker network
+      docker_network:
+        name: test
+
     - name: Prune everything
       community.docker.docker_prune:
         containers: true
