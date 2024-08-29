@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent docker-node
     environment {
         ENV = 'DEV'
         DB_URL = 'localhost'
