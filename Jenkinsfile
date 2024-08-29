@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo DOCKER_HUB_CREDENTIAL_USR
                 echo DOCKER_HUB_CREDENTIAL_PSW
-                echo env
+                echo env.GIT_COMMIT
             }
         }
         stage('Test') {
