@@ -1,5 +1,5 @@
 pipeline {
-    agent docker
+    agent  docker { image 'node:20.17.0-alpine3.20' }
     environment {
         ENV = 'DEV'
         DB_URL = 'localhost'
