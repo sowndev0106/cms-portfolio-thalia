@@ -8,22 +8,28 @@ pipeline {
 
     }
     stages {
-        stage('Build') {
+        stage('Build and Push Docker Image') {
             steps {
-                echo DOCKER_HUB_CREDENTIAL_USR
-                echo DOCKER_HUB_CREDENTIAL_PSW
-                echo env.GIT_COMMIT
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing.. Update'
+               withDockerRegistry(credentialsId: 'sowndev-dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh "printenv"
+                    sh 'docker compose build'
+                    sh 'docker compose ps'vbnma
+                    sh 'docker compose push'
+                  
+                }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying.... Update'
             }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            sh 'docker compose down --remove-orphans -v '
+            cleanWs()
         }
     }
 }
