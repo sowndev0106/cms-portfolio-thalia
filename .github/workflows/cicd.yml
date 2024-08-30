@@ -83,7 +83,6 @@ jobs:
             cd ~/app/cms-thalia
             ls -al
             echo "$SECRETS_VARS" > "secrets.txt"
-            echo ${{ toJson(secrets) }} > "secrets.txt"
 
            
             
