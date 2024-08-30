@@ -51,6 +51,11 @@ jobs:
       #     context: .
       #     push: true
       #     tags: son162001/cms-thalia:${{ env.tag }}
+      - name: check 
+        run: | 
+          echo "Hello, world!" 
+          ls -la
+
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
         with:
