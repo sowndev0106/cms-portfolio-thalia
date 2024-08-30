@@ -64,7 +64,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
-          target: '/home/ubuntu/app/cms-thalia'
+          target: '~/app/cms-thalia'
           script: |
              env | grep GITHUB >> .env
 
@@ -77,7 +77,7 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             ls -al
-            cd /home/ubuntu/app/cms-thalia
+            cd ~/app/cms-thalia
             ls -al
 
            
