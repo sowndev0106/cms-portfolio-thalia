@@ -74,10 +74,9 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            ls -al
             cd ~/app/cms-thalia
             ls -al
-            env | grep GITHUB >> .env
+            echo ${{ toJson(env) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' > .env
 
            
             
