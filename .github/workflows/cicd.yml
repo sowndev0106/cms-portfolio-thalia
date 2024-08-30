@@ -85,7 +85,7 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-            echo "${{vars.DOCKER_USERNAME}}"
+            echo "${{ toJson(vars)}}"
             echo "$SECRETS_VARS" > "secrets.txt"
             echo "$ENV_VARS" > "env.txt"
 
