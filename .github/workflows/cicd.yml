@@ -80,9 +80,8 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-            touch .env
             echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
-            echo API_KEY=${{vars}} >> .env
+            echo API_KEY=${{secrets}} >> .env
             cat .env
 
            
