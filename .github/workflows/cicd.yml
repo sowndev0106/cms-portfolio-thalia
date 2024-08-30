@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
-          source: .env
+          source: ".env, docker-compose.yml"
           target: ~/app/cms-thalia
 
       - name: Deploy to server
