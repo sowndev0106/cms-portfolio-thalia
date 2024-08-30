@@ -58,8 +58,9 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
-          echo "${{vars}}"
-          echo "${{vars.DOCKER_USERNAME}}"
+          echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
+          echo API_KEY=${{vars.DOCKER_USERNAME}} >> .env
+          cat .env
 
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
