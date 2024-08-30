@@ -66,7 +66,9 @@ jobs:
           source: 'docker-compose.yml'
           target: '~/app/cms-thalia'
           script: |
-             env | grep GITHUB >> .env
+            ls -al
+            cd ~/app/cms-thalia
+            env | grep GITHUB >> .env
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
