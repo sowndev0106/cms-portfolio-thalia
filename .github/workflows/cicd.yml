@@ -58,10 +58,9 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
-          echo "${{env}}"
-          echo "${{secrets}}"
-          echo  ${{ vars.DOCKER_USERNAME }}
-          echo  ${{ vars.DOCKER_PASSWORD }}
+          echo "${{var}}"
+          echo  "${{ vars.DOCKER_USERNAME }}"
+          echo  "${{ vars.DOCKER_PASSWORD }}"
 
 
       - name: Copy docker-compose.yml to remote server
