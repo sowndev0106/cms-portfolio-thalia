@@ -34,7 +34,6 @@
     - name: Run application
       command: cd /home/ubuntu/cms-portfolio-thalia && docker-compose up -d
       
-
     - name: Prune everything
       community.docker.docker_prune:
         containers: true
