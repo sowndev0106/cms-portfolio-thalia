@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: develop
     env:
-      TAG: ${{ needs.build.outputs.tag }
+      TAG: ${{ needs.build.outputs.tag }}
     permissions:
       packages: write
       contents: read
