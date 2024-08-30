@@ -80,9 +80,10 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-            echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
-            echo API_KEY=${{secrets}} >> .env
-            cat .env
+             
+            while read line; do
+              echo "$line" >> $GITHUB_ENV
+            done < ${{ env.ENV_FILE }}
 
            
             
