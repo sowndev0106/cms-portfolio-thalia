@@ -73,8 +73,8 @@ jobs:
 
       - name: Deploy to server
         env:
-           SECRETS_VARS: ${{ toJson(secrets) }}
-           ENV_VARS: ${{ toJson(vars) }}
+          SECRETS_VARS: ${{ toJson(secrets) }}
+          ENV_VARS: ${{ toJson(vars) }}
 
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -85,9 +85,18 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-            echo "${{ toJson(vars)}}"
-            echo "$SECRETS_VARS" > "secrets.txt"
-            echo "$ENV_VARS" > "env.txt"
+
+            # Create envFile file
+            echo "Creating envFile file from ENV_VARS..."
+            echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > envFile
+
+            # Optionally, append secrets to envFile file
+            echo "Appending secrets to envFile file..."
+            echo "$SECRETS_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' >> envFile
+
+            # Display the envFile file content
+            echo "Contents of envFile file:"
+            cat envFile
 
            
             
