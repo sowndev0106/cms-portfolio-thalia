@@ -58,8 +58,9 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
+          touch .env
           echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
-          echo API_KEY=${{vars.DOCKER_USERNAME}} >> .env
+          echo API_KEY=${{secrets.REMOTE_HOST}} >> .env
           cat .env
 
       - name: Copy docker-compose.yml to remote server
