@@ -98,6 +98,7 @@ jobs:
     name: Deploy to develop
     runs-on: ubuntu-latest
     environment: develop
+    needs: build
     env:
       TAG: ${{ needs.build.outputs.tag }}
     permissions:
