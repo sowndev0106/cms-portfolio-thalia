@@ -42,8 +42,7 @@ jobs:
 
       - name: Log env 
         run: | 
-          echo ${{ steps.meta.outputs.labels }}
-          echo ${{ steps.meta.outputs.tags }}
+          echo echo ${{ toJson(env) }}
     
       - name: Build and push Docker images
         id: push
@@ -52,7 +51,7 @@ jobs:
           context: .
           push: true
           tags: son162001/cms-thalia:latest
-          labels: ${{ steps.meta.outputs.labels }}
+          # labels: ${{ steps.meta.outputs.labels }}
           
 
       - name: Generate artifact attestation
