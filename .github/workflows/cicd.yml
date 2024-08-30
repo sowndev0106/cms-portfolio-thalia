@@ -65,10 +65,6 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
           target: '~/app/cms-thalia'
-          script: |
-            ls -al
-            cd ~/app/cms-thalia
-            env | grep GITHUB >> .env
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -81,6 +77,7 @@ jobs:
             ls -al
             cd ~/app/cms-thalia
             ls -al
+            env | grep GITHUB >> .env
 
            
             
