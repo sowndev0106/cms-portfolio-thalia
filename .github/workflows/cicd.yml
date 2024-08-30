@@ -59,7 +59,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.$DOCKER_REPO }}:${{ env.tag }}
+          tags: ${{ env.DOCKER_REPO }}:${{ env.tag }}
 
       - name: Create .env file 
         env:
@@ -68,7 +68,7 @@ jobs:
         run: | 
           echo "Creating .env file from ENV_VARS..."
           echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > .env
-          echo -e "DOCKER_REGISTRY_IMAGE=${{ env.$DOCKER_REPO }}:${{ env.tag }}" >> .env
+          echo -e "DOCKER_REGISTRY_IMAGE=${{ env.DOCKER_REPO }}:${{ env.tag }}" >> .env
 
       - name: Copy files to remote server
         uses: appleboy/scp-action@v0.1.3
@@ -92,7 +92,7 @@ jobs:
             docker compose up -d  
             docker ps            
             # clear docker images
-            docker rmi $(docker images | grep '${{ env.$DOCKER_REPO }}')
+            docker rmi $(docker images | grep '${{ env.DOCKER_REPO }}')
 
   deploy_develop:
     name: Deploy to develop
