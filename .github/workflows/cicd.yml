@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  WORKPLACE_APP: ~/app/cms-thalia
+
 jobs:
   push_to_registries:
     name: Build and Push Docker images
@@ -55,6 +58,11 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
+          echo "${{env}}"
+          echo "${{secrets}}"
+          echo  ${{ vars.DOCKER_USERNAME }}
+          echo  ${{ vars.DOCKER_PASSWORD }}
+
 
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
@@ -64,7 +72,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
-          target: '~/app/cms-thalia'
+          target: '$WORKPLACE_APP'
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -74,9 +82,8 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            cd ~/app/cms-thalia
+            cd $WORKPLACE_APP
             ls -al
-            echo ${{ toJson(env) }}' | jq -r 'keys[] as $k | "\($k)=\(.[$k])"' > .env
 
            
             
