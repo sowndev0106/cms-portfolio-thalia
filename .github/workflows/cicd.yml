@@ -73,6 +73,7 @@ jobs:
       - name: Deploy to server
         env:
            SECRETS_VARS: ${{ toJson(secrets) }}
+           ENV_VARS: ${{ toJson(vars) }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -83,6 +84,7 @@ jobs:
             cd ~/app/cms-thalia
             ls -al
             echo "$SECRETS_VARS" > "secrets.txt"
+            echo "$ENV_VARS" > "env.txt"
 
            
             
