@@ -13,6 +13,7 @@ jobs:
   push_to_registries:
     name: Build and Push Docker images
     runs-on: ubuntu-latest
+    environment: develop
     permissions:
       packages: write
       contents: read
@@ -74,6 +75,7 @@ jobs:
         env:
            SECRETS_VARS: ${{ toJson(secrets) }}
            ENV_VARS: ${{ toJson(vars) }}
+
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -83,6 +85,7 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
+            echo "${{vars.DOCKER_USERNAME}}"
             echo "$SECRETS_VARS" > "secrets.txt"
             echo "$ENV_VARS" > "env.txt"
 
