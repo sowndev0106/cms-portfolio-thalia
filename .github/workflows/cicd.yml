@@ -58,10 +58,7 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
-          touch .env
-          echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
-          echo API_KEY=${{secrets.REMOTE_HOST}} >> .env
-          cat .env
+        
 
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
@@ -83,6 +80,10 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
+            touch .env
+            echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
+            echo API_KEY=${{secrets.REMOTE_HOST}} >> .env
+            cat .env
 
            
             
