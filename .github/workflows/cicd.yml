@@ -71,6 +71,8 @@ jobs:
           target: ~/app/cms-thalia
 
       - name: Deploy to server
+        env:
+           SECRETS_VARS: ${{ toJson(secrets) }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -80,10 +82,8 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-            touch .env
-            echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
-            echo API_KEY=${{vars.DOCKER_USERNAME}} >> .env
-            cat .env
+            echo "$SECRETS_VARS" > "secrets.txt"
+            echo ${{ toJson(secrets) }} > "secrets.txt"
 
            
             
