@@ -58,7 +58,6 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
-          echo "${{var}}"
           echo  "${{ vars.DOCKER_USERNAME }}"
           echo  "${{ vars.DOCKER_PASSWORD }}"
 
@@ -71,7 +70,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
-          target: '$WORKPLACE_APP'
+          target: "${{ WORKPLACE_APP}}"
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
