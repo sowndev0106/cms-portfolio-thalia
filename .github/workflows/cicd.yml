@@ -60,9 +60,6 @@ jobs:
             SECRETS_VARS: ${{ toJson(secrets) }}
             ENV_VARS: ${{ toJson(vars) }}
         run: | 
-          echo "Hello, world!" 
-          echo "$ENV_VARS" 
-          echo "$SECRETS_VARS"
           # Create envFile file
           echo "Creating envFile file from ENV_VARS..."
           echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > envFile
@@ -85,6 +82,16 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
+          target: ~/app/cms-thalia
+
+      - name: Copy ENV to remote server
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.REMOTE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          source: 'envFile'
           target: ~/app/cms-thalia
 
       - name: Deploy to server
