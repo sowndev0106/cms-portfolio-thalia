@@ -63,6 +63,12 @@ jobs:
             ls -al
             # create a new directory 'app' if it doesn't exist
             mkdir -p app
-            # copy the docker-compose file to the server
-            scp docker-compose.yml ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/app/docker-compose.yml
+            # clone the repository only docker-compose.yml file
+            git clone --depth 1 --branch main 
+            # change the directory to the cloned repository
+            cd cms-thalia
+            # pull the latest changes
+            git pull
+            # restart the docker-compose
+            
 
