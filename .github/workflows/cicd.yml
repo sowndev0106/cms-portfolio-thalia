@@ -25,32 +25,32 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Log in to the Container registry
+      #   uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Declare some variables
-        shell: bash
-        run: |
-          echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
-          echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_ENV"
-          echo "tag=$(git rev-parse --short "$GITHUB_SHA").$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_ENV"
+      # - name: Declare some variables
+      #   shell: bash
+      #   run: |
+      #     echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+      #     echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_ENV"
+      #     echo "tag=$(git rev-parse --short "$GITHUB_SHA").$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_ENV"
       
-      - name: Another step
-        run: |
-          echo "Branch: ${{ env.branch }}"
-          echo "Sha: ${{ env.sha_short }}"
+      # - name: Another step
+      #   run: |
+      #     echo "Branch: ${{ env.branch }}"
+      #     echo "Sha: ${{ env.sha_short }}"
 
-      - name: Build and push Docker images
-        id: push
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: .
-          push: true
-          tags: son162001/cms-thalia:${{ env.tag }}
+      # - name: Build and push Docker images
+      #   id: push
+      #   uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: son162001/cms-thalia:${{ env.tag }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -60,6 +60,9 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            whoami
             ls -al
+            # create a new directory 'app' if it doesn't exist
+            mkdir -p app
+            # copy the docker-compose file to the server
+            scp docker-compose.yml ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/app/docker-compose.yml
 
