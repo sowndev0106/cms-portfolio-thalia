@@ -58,8 +58,8 @@ jobs:
         run: | 
           echo "Hello, world!" 
           ls -la
-          echo "${{env}}"
-          echo "${{secrets}}"
+          echo "${{vars}}"
+          echo "${{vars.DOCKER_USERNAME}}"
 
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
@@ -69,7 +69,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: 'docker-compose.yml'
-          target: '$WORKPLACE_APP'
+          target: ~/app/cms-thalia
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -79,7 +79,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            cd $WORKPLACE_APP
+            cd ~/app/cms-thalia
             ls -al
 
            
