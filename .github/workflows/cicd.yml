@@ -85,7 +85,8 @@ jobs:
           script: |
             cd ~/app/cms-thalia
             ls -al
-
+            echo "$ENV_VARS" 
+            echo "$SECRETS_VARS"
             # Create envFile file
             echo "Creating envFile file from ENV_VARS..."
             echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > envFile
