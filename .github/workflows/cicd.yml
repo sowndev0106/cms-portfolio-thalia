@@ -56,9 +56,25 @@ jobs:
       #     push: true
       #     tags: son162001/cms-thalia:${{ env.tag }}
       - name: check 
+        env:
+            SECRETS_VARS: ${{ toJson(secrets) }}
+            ENV_VARS: ${{ toJson(vars) }}
         run: | 
           echo "Hello, world!" 
-          ls -la
+          echo "$ENV_VARS" 
+          echo "$SECRETS_VARS"
+          # Create envFile file
+          echo "Creating envFile file from ENV_VARS..."
+          echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > envFile
+
+          # Optionally, append secrets to envFile file
+          echo "Appending secrets to envFile file..."
+          echo "$SECRETS_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' >> envFile
+
+          # Display the envFile file content
+          echo "Contents of envFile file:"
+          cat envFile
+
         
 
       - name: Copy docker-compose.yml to remote server
