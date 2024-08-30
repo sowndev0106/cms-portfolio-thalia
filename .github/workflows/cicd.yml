@@ -52,3 +52,14 @@ jobs:
           push: true
           tags: son162001/cms-thalia:${{ env.tag }}
 
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.REMOTE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            whoami
+            ls -al
+
