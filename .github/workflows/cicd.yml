@@ -70,16 +70,10 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
-          source: |
-            docker-compose.yml
-            .env
+          source: .env
           target: ~/app/cms-thalia
 
       - name: Deploy to server
-        env:
-          SECRETS_VARS: ${{ toJson(secrets) }}
-          ENV_VARS: ${{ toJson(vars) }}
-
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
