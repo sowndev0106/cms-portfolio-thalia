@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  {{ env.WORKPLACE_APP}}: ~/app/cms-thalia
+  WORKPLACE_APP: ~/app/cms-thalia
   DOCKER_REPO: son162001/cms-thalia
 
 jobs:
