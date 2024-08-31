@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  WORKPLACE_APP: ~/app/cms-thalia
+  {{ env.WORKPLACE_APP}}: ~/app/cms-thalia
   DOCKER_REPO: son162001/cms-thalia
 
 jobs:
@@ -78,7 +78,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           source: ".env, docker-compose.yml"
-          target: $WORKPLACE_APP
+          target: ${{ env.WORKPLACE_APP}}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
@@ -88,7 +88,7 @@ jobs:
           key: ${{ secrets.REMOTE_KEY }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            cd $WORKPLACE_APP
+            cd ${{ env.WORKPLACE_APP}}
             docker compose up -d  
             docker ps            
             # clear docker images
