@@ -61,6 +61,22 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_REPO }}:${{ env.tag }}
 
+  deploy_develop:
+    name: Deploy to develop
+    runs-on: ubuntu-latest
+    environment: develop
+    needs: build
+    env:
+      TAG: ${{ needs.build.outputs.tag }}
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
       - name: Create .env file 
         env:
             SECRETS_VARS: ${{ toJson(secrets) }}
@@ -68,7 +84,7 @@ jobs:
         run: | 
           echo "Creating .env file from ENV_VARS..."
           echo "$ENV_VARS" | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > .env
-          echo -e "DOCKER_REGISTRY_IMAGE=${{ env.DOCKER_REPO }}:${{ env.tag }}" >> .env
+          echo -e "DOCKER_REGISTRY_IMAGE=${{ env.DOCKER_REPO }}:${{ env.TAG }}" >> .env
 
       - name: Copy files to remote server
         uses: appleboy/scp-action@v0.1.3
@@ -93,23 +109,3 @@ jobs:
             docker ps            
             # clear docker images
             # docker rmi $(docker images | grep '${{ env.DOCKER_REPO }}')
-
-  deploy_develop:
-    name: Deploy to develop
-    runs-on: ubuntu-latest
-    environment: develop
-    needs: build
-    env:
-      TAG: ${{ needs.build.outputs.tag }}
-    permissions:
-      packages: write
-      contents: read
-      attestations: write
-      id-token: write
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-      
-      - name: Check env TAG
-        run: |
-          echo "TAG: ${{ env.TAG }}"
