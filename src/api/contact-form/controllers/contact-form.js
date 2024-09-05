@@ -6,18 +6,35 @@
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
+const axios = require("axios");
 
 module.exports = createCoreController(
   "api::contact-form.contact-form",
   ({ strapi }) => ({
     async submit(ctx) {
       const body = ctx.request.body;
+
+      // Verify reCAPTCHA
+      const recaptchaResponse = body.googleCaptcha;
+      const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET;
+
+      try {
+        const verificationResponse = await axios.post(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`
+        );
+        if (!verificationResponse.data.success) {
+          return ctx.badRequest("reCAPTCHA verification failed");
+        }
+      } catch (error) {
+        return ctx.badRequest("Error verifying reCAPTCHA");
+      }
+
+      // Proceed with form submission if reCAPTCHA is verified
       const entity = await strapi
         .service("api::contact-form.contact-form")
         .create({
           data: {
             publishedAt: new Date(),
-            // @ts-ignore
             ...body,
           },
         });
