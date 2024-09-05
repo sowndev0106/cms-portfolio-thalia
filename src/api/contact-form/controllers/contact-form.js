@@ -38,12 +38,13 @@ module.exports = createCoreController(
           },
         });
 
-      await strapi.plugins["email"].services.email.send({
-        cc: process.env.MAIL_CC || "thaliatran161@gmail.com",
-        to: body.email,
-        from: "no-reply@thaliatrandesign.com",
-        subject: `Successful contact form submission - ${body.subject}`,
-        html: `
+      strapi.plugins["email"].services.email
+        .send({
+          cc: process.env.MAIL_CC || "thaliatran161@gmail.com",
+          to: body.email,
+          from: "no-reply@thaliatrandesign.com",
+          subject: `Successful contact form submission - ${body.subject}`,
+          html: `
           <p>  Hi <b> ${body.email}</b>, </p>
           
           <p>  Thank you for your message. We will get back to you as soon as possible.</p>
@@ -51,7 +52,13 @@ module.exports = createCoreController(
           <p>  Here is a copy of your message: ${body.message}</p>
 
           <p>  Best regards,  <br> Thalia Tran Design </p>`,
-      });
+        })
+        .then(() => {
+          console.log("Email sent");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       return this.transformResponse(entity, {});
     },
