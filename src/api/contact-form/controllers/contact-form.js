@@ -17,7 +17,6 @@ module.exports = createCoreController(
       // Verify reCAPTCHA
       const recaptchaResponse = body.googleCaptcha;
       const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET;
-
       try {
         const verificationResponse = await axios.post(
           `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`

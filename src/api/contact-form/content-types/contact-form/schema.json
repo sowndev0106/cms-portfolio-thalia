@@ -20,9 +20,6 @@
       "type": "string",
       "required": true
     },
-    "googleCaptcha": {
-      "type": "text"
-    },
     "message": {
       "type": "text",
       "required": true

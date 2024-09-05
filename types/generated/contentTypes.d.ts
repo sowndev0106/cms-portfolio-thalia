@@ -376,7 +376,6 @@ export interface ApiContactFormContactForm extends Schema.CollectionType {
   attributes: {
     email: Attribute.String & Attribute.Required;
     subject: Attribute.String & Attribute.Required;
-    googleCaptcha: Attribute.Text;
     message: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
