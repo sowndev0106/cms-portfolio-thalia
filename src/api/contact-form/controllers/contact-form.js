@@ -50,9 +50,9 @@ module.exports = createCoreController(
           <p>  Thank you for your message. We will get back to you as soon as possible.</p>
           
           <p>  Here is a copy of your message:
-             <div style="white-space: pre-wrap;">${body.message}</div>
+             <i style="white-space: pre-wrap;  color: #333333">${body.message}</i>
           </p>
-          <p>  Best regards,  <br> Thalia Tran Design </p>`,
+          <p>  Best regards,  <br> <b> Thalia Tran Design </b> </p>`,
         })
         .then(() => {
           console.log("Email sent");
