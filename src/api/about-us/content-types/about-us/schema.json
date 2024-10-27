@@ -32,14 +32,6 @@
         "videos",
         "audios"
       ]
-    },
-    "content2": {
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "preset": "standard"
-      },
-      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }

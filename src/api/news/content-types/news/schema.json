@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "banner": {
       "type": "media",
@@ -29,10 +30,13 @@
     "content": {
       "type": "customField",
       "options": {
-        "output": "HTML",
-        "preset": "rich"
+        "preset": "default"
       },
-      "customField": "plugin::ckeditor.CKEditor"
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }

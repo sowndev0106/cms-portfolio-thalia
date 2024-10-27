@@ -809,14 +809,6 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
       >;
     title: Attribute.String;
     banner: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    content2: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
-        {
-          output: 'HTML';
-          preset: 'standard';
-        }
-      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -920,16 +912,16 @@ export interface ApiNewsNews extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     banner: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     content: Attribute.RichText &
       Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
+        'plugin::ckeditor5.CKEditor',
         {
-          output: 'HTML';
-          preset: 'rich';
+          preset: 'default';
         }
       >;
+    slug: Attribute.UID<'api::news.news', 'title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
