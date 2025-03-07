@@ -860,6 +860,43 @@ export interface ApiContactFormContactForm extends Schema.CollectionType {
   };
 }
 
+export interface ApiGamingWebsiteGamingWebsite extends Schema.CollectionType {
+  collectionName: 'gaming_websites';
+  info: {
+    singularName: 'gaming-website';
+    pluralName: 'gaming-websites';
+    displayName: 'Gaming website';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    projectUrl: Attribute.String;
+    liveWebsiteUrl: Attribute.String;
+    thumbnail: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    content: Attribute.Blocks;
+    slug: Attribute.UID<'api::gaming-website.gaming-website', 'title'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gaming-website.gaming-website',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gaming-website.gaming-website',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomepageHomepage extends Schema.SingleType {
   collectionName: 'homepages';
   info: {
@@ -952,6 +989,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::contact-form.contact-form': ApiContactFormContactForm;
+      'api::gaming-website.gaming-website': ApiGamingWebsiteGamingWebsite;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::news.news': ApiNewsNews;
     }

@@ -1,57 +1,72 @@
-# front-size
-text-xs	
-text-sm	
-text-base	
-text-lg	
-text-xl	
-text-2xl	
-text-3xl	
-text-4xl	
-text-5xl	
-text-6xl	
-text-7xl	
-text-8xl
-text-9xl	
+# CMS Portfolio Thalia
 
+## Getting Started
 
-# color
-yellow-green
-purple
-black
-white 
+Follow these instructions to set up and run the project locally.
 
-# Width
-w-0.5	
-w-1	
-w-1.5	
-w-2	
-w-2.5	
-w-3	
-w-3.5	
-w-4	
-w-5	
-w-6	
-w-7	
-w-8	
-w-9	
-w-10	
-w-11	
-w-12	
-w-14	
-w-16	
-w-20	
-w-24	
-w-28	
-w-32	
-w-36	
-w-40	
-w-44	
-w-48	
-w-52	
-w-56	
-w-60	
-w-64	
-w-72	
-w-80	
-w-96	
-w-auto	
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (version X.X.X)
+- npm (version X.X.X) or yarn (version X.X.X)
+
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/your-username/cms-portfolio-thalia.git
+   cd cms-portfolio-thalia
+   ```
+
+2. Install the dependencies:
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables.
+
+### Running the Development Server
+
+Start the development server:
+
+```sh
+npm run dev
+# or
+yarn dev
+```
+
+The project should now be running at `http://localhost:3000`.
+
+### Building for Production
+
+To build the project for production, run:
+
+```sh
+npm run build
+# or
+yarn build
+```
+
+### Running Tests
+
+To run tests, use:
+
+```sh
+npm test
+# or
+yarn test
+```
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
