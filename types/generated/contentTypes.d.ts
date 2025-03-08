@@ -877,8 +877,14 @@ export interface ApiGamingWebsiteGamingWebsite extends Schema.CollectionType {
     liveWebsiteUrl: Attribute.String;
     thumbnail: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    content: Attribute.Blocks;
     slug: Attribute.UID<'api::gaming-website.gaming-website', 'title'>;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

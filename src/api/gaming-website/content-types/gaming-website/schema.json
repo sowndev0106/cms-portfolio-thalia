@@ -43,12 +43,16 @@
         "audios"
       ]
     },
-    "content": {
-      "type": "blocks"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
